@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PythonTest1"
+rootProject.name = "RespirationRate_Test"
 include ':app'

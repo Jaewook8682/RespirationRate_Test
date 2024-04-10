@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Python py = Python.getInstance();
-        PyObject module = py.getModule("classification");
+        PyObject module = py.getModule("RespirationRate");
         //get the predictions from the ml module
         PyObject Prediction = module.callAttr("evaluate");
         System.out.println(Prediction);
