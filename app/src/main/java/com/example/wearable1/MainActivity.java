@@ -3,7 +3,10 @@ package com.example.wearable1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
@@ -16,25 +19,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (! Python.isStarted()) {
-            Python.start(new AndroidPlatform(this));
-        }
+        Button bt_cls = findViewById(R.id.btn_cls);
+        bt_cls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { go_classification(); }
+        });
 
-        Python py = Python.getInstance();
-        PyObject module = py.getModule("RespirationRate");
-        //get the predictions from the ml module
-        PyObject Prediction = module.callAttr("evaluate");
-        System.out.println(Prediction);
+        Button bt_res = findViewById(R.id.btn_res);
+        bt_res.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { go_respiration(); }
+        });
+    }
 
-        /*
-        DateTimeFormatter date_f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter time_f = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String Date = LocalDateTime.now().format(date_f).toString();
-        String Time = LocalDateTime.now().format(time_f).toString();
-        System.out.println(Date);
-        System.out.println(Time);
-        db = new DatabaseHelper(context);
-        db.insertData(Date, "coughing", Time, 1);
-         */
+    private void go_classification(){
+        Intent go_cls = new Intent(MainActivity.this, Classification_Activity.class);
+        startActivity(go_cls);
+    }
+
+    private void go_respiration(){
+        Intent go_res = new Intent(MainActivity.this, Respiration_Activity.class);
+        startActivity(go_res);
     }
 }

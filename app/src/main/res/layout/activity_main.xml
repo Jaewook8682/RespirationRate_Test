@@ -4,6 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="171dp"
+        android:layout_height="85dp"
+        android:text="Classification"
+        android:textSize="18dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/btn_cls"
+        />
+
+    <Button
+        android:layout_width="171dp"
+        android:layout_height="85dp"
+        android:text="Respiration"
+        android:textSize="18dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/btn_res"
+        />
+
+
 
 </LinearLayout>

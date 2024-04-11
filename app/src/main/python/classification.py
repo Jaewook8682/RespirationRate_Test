@@ -88,9 +88,7 @@ def get_multiple(indices):
     return[classes[i] for i in indices]
 
 def downsampling(data):
-    down_sampled = np.empty([0, 500])
-    for i in range(1000):
-        down_sampled = np.append(down_sampled, [data[i, 0:len(data[0]):2]], axis=0)
+    down_sampled = data[:, 0:len(data[0]):2]
     return down_sampled
 
 def evaluate(*args):
@@ -132,6 +130,8 @@ def evaluate(*args):
     model.eval()
     print("11")
     x = data_input[0]
+    x = x.unsqueeze(0)  #### convert the data size of three dimension to a four dimensional data
+    print(x.size())
     print("22")
     x = x.type(torch.float32).to(device)
     print("33")
@@ -141,7 +141,10 @@ def evaluate(*args):
     print("==================================")
     print(pred)
     print("--------------------------------")
-    result = get_multiple(pred[1].squeeze())
+    #result = get_multiple(pred[1].squeeze())
+    ################ Xiaochuan
+    classes = ['coughing', 'laughing', 'throat_cleaning', 'speaking', 'walking']
+    result = classes[pred[1].squeeze()]
+    #################################
     print(result)
     return 1
-
